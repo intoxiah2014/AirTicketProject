@@ -12,11 +12,6 @@ The source of the output is the internet.
 
 Given certain information about the flight, the project allow user to see all available flights' data on the console. 
 
-# Required Packages
-
-We require user to import package for parcing the HTML text.
-
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -46,10 +41,6 @@ until finished
 ```
 
 End with an example of getting some data out of the system or using it for a little demo
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
