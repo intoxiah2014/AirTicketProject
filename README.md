@@ -22,18 +22,23 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 Here are a list of required preperations to install the programm successfully.
-Python 3.6 is required to run the program.
 
-In order to get useful information from the webpage, some HTMl parsing modules are required to facilitate the project.
+Python 3.6+ is required to run the program.
+
+* Windows Installation -- [Windows](https://www.python.org/downloads/windows/)
+* Mac OS X Installation -- [Mac OS X](https://www.python.org/downloads/mac-osx/)
+* Other platforms -- [Other](https://www.python.org/download/other/)
+
+In order to get useful information from the webpage, some HTMl parsing modules are also required.
 * requests
 * html
 * json
 * re
-
+These modules will be imported when executing the program. And such importation is included at the beginning of the program, such as:
 ```
-Give examples
+import(requests)
 ```
-
+ 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
@@ -57,16 +62,10 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 * **Aijing** -- [Aijing](https://github.com/muliamuli)
 * **Chen Wang** -- [Chen Want](https://github.com/az2525)
 * **Siyuan Liu** -- [Siyuan Liu](https://github.com/intoxiah2014)
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
-## Lisence
-
+Our project was inspired by scrapehero's project -- [scrapehero](https://gist.github.com/scrapehero/bc34513e2ea72dc0890ad47fbd8a1a4f)
