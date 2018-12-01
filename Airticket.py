@@ -34,9 +34,9 @@ def process(flight_data,stopNo,min_price,max_price):
     	  for i in flight_data['legs'].keys():
     		  exact_price = flight_data['legs'][i].get('price',{}).get('totalPriceAsDecimal','')		
     		  formatted_price = flight_data['legs'][i].get('price',{}).get('formattedPrice','')
-    		  departure_location_airport = flight_data['legs'][i].get('departureLocation',{}).get('airportLongName','')
+    		  departure_location_airport = flight_data['legs'][i].get('departureLocation',{}).get('longName','')
     		  departure_location_city = flight_data['legs'][i].get('departureLocation',{}).get('airportCity','')
-    		  arrival_location_airport = flight_data['legs'][i].get('arrivalLocation',{}).get('airportLongName','')
+    		  arrival_location_airport = flight_data['legs'][i].get('arrivalLocation',{}).get('longName','')
     		  arrival_location_city = flight_data['legs'][i].get('arrivalLocation',{}).get('airportCity','')
     		  airline_name = flight_data['legs'][i].get('carrierSummary',{}).get('airlineName','')
     				
