@@ -121,7 +121,7 @@ if __name__=="__main__":
 	AdultNo = args.AdultNo
     
 	print ("Fetching flight details")
-	scraped_data = parse(triptype, source, destination, startdate, returndate, AdultNo)
+	scraped_data = process(parse(triptype, source, destination, startdate, returndate, AdultNo), stopNo, min_price, max_price)
 	print ("Writing data to output file")
 	with open('%s-%s-flight-results.json'%(source, destination),'w') as fp:
 	 	json.dump(scraped_data,fp,indent = 4)
