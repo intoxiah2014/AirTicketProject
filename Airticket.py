@@ -67,11 +67,12 @@ def process(flight_data,stopNo,min_price,max_price):
     	  	  	  	  departure_time = timeline['departureTime'].get('time','')
     	  	  	  	  arrival_airport = timeline.get('arrivalAirport',{}).get('longName','')
     	  	  	  	  arrival_time = timeline.get('arrivalTime',{}).get('time','')
-    	  	  	  	  flight_timing = {'departure_airport':departure_airport,
-    						'departure_time':departure_time,
-    						'arrival_airport':arrival_airport,
-    						'arrival_time':arrival_time
-    						}
+    	  	  	  	  flight_timing = {
+    											'departure_airport':departure_airport,
+    											'departure_time':departure_time,
+    											'arrival_airport':arrival_airport,
+    											'arrival_time':arrival_time
+    						    }
     	  	  	  	  timings.append(flight_timing)
     
     	  	  flight_info={'stops':stop,
@@ -93,3 +94,35 @@ def process(flight_data,stopNo,min_price,max_price):
     	  print ("Rerying...")
 			
     return [{"error":"failed to process the page"}]
+
+# a main function to execute the scraper, however did not figure out how to execute the process function
+if __name__=="__main__":
+	argparser = argparse.ArgumentParser()
+	argparser.add_argument('source',help = 'Source airport code')
+	argparser.add_argument('destination',help = 'Destination airport code')
+	argparser.add_argument('startdate',help = 'MM/DD/YYYY')
+	argparser.add_argument('returndate',help = 'MM/DD/YYYY')
+	argparser.add_argument('triptype', help = '"oneway" or "roundtrip"')
+	argparser.add_argument('stopNo', help = 'Number of Stops')
+	argparser.add_argument('max_price',help = 'Maximum Price')
+	argparser.add_argument('min_price',help = 'Minimum Price')
+	argparser.add_argument('AdultNo',help = 'Number of Adults')
+    
+
+	args = argparser.parse_args()
+	source = args.source
+	destination = args.destination
+	startdate = args.startdate
+	returndate = args.returndate
+	triptype = args.triptype
+	stopNo = args.stopNo
+	max_price = args.max_price
+	min_price = args.min_price
+	AdultNo = args.AdultNo
+    
+	print ("Fetching flight details")
+	scraped_data = parse(triptype, source, destination, startdate, returndate, AdultNo)
+	print ("Writing data to output file")
+	with open('%s-%s-flight-results.json'%(source, destination),'w') as fp:
+	 	json.dump(scraped_data,fp,indent = 4)
+
