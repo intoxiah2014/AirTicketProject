@@ -99,8 +99,9 @@ def process(flight_data,stopNo,min_price,max_price):
 		
     return [{"error":"failed to process the page"}]
 
-# a main function to execute the scraper, however did not figure out how to execute the process function
+# A main function to execute the scraper
 if __name__=="__main__":
+	# Add user Inputs and helper text
 	argparser = argparse.ArgumentParser()
 	argparser.add_argument('triptype', help = '"oneway" or "roundtrip"')
 	argparser.add_argument('source',help = 'Source airport code')
@@ -113,7 +114,7 @@ if __name__=="__main__":
 	argparser.add_argument('max_price',help = 'Maximum Price')
 
     
-
+	# Recognize inputs as arguments for the crawer function
 	args = argparser.parse_args()
 	triptype = args.triptype
 	source = args.source
@@ -124,10 +125,12 @@ if __name__=="__main__":
 	stopNo = args.stopNo
 	min_price = args.min_price
 	max_price = args.max_price
-    
+	
+    	# Execution of the crawler
 	print ("Fetching flight details")
 	scraped_data = process(parse(triptype, source, destination, startdate, returndate, AdultNo), stopNo, min_price, max_price)
+	
+	# Write the selected json data to a file
 	print ("Writing data to output file")
 	with open('%s-%s-flight-results.json'%(source, destination),'w') as fp:
-	 	json.dump(scraped_data,fp,indent = 4)
-
+ 	json.dump(scraped_data,fp,indent = 4)
