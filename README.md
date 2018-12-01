@@ -14,10 +14,20 @@ The source of the output is the internet.
 Given required air ticket information, the program will return flight information to the console. And the return value will be oriented dictionaries.
 
 ## required input
-The program requires multiple requests for user 
+The program requires the user input of:
+* Trip type, either one-way or roundtrip
+* Departing Airport (or city) Code
+* Destination Airport (or city) Code
+* Leave Date
+* Return Date
+* Number of Adults
+* Stop Number
+* Minimum Price 
+* Maximum Price of the trip
 
 ## output style
-The output will be an oriented dictionary with information of all trips that satisfies the requests. The output is printed to the console.
+The output will be an oriented dictionary with information of all trips that satisfies the requests. 
+The output is printed to the console.
 
 # Getting Started
 
