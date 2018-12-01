@@ -4,10 +4,15 @@ import json
 import re
 import argparse
 
-def parse(triptype,source,destination,startdate,returndate,AdultNo):
+#A function that fetch flight information and place it into a dictionary from air ticket booking website
+def parse(triptype,source,destination,startdate,returndate,AdultNo): 
+
+	#Using regular expression to seperate date imput into parts
 	  pattern=r'\d+'
 	  dapartdate=re.findall(pattern,startdate)
 	  enddate=re.findall(pattern,returndate)    
+          
+	#Formatting our url by the search criteria
 	  for i in range(5):
 	  	  if triptype=='oneway':
 	  	  	  url = "https://www.expedia.com/Flights-Search?trip=oneway&leg1=from%3A{0}%2Cto%3A{1}%2Cdeparture%3A{2}%2F{3}%2F{4}TANYT&passengers=adults%3A{5}%2Cchildren%3A0%2Cseniors%3A0%2Cinfantinlap%3AY&options=cabinclass%3Aeconomy&mode=search&origref=www.expedia.com".format(source,destination,dapartdate[0],dapartdate[1],dapartdate[2],AdultNo)
@@ -16,10 +21,14 @@ def parse(triptype,source,destination,startdate,returndate,AdultNo):
                 .format(dapartdate[0],dapartdate[1],dapartdate[2],enddate[0],enddate[1],enddate[2],source,destination,dapartdate[0],dapartdate[1],dapartdate[2],destination,source,enddate[0],enddate[1],enddate[2],AdultNo)
 	  	  else:
 	  	  	  raise ValueError('wrong input') 
+
+	#Using requests library to get information using the url
 	  response = requests.get(url)
+	  
+	#Checking to see if we successfully scrape the information
 	  if not response.status_code == 200:
 	  	  return None
-	  try:
+	  try:#Using html to parse the page and save to a json file
 	  	  root = html.fromstring(response.text)    
 	  	  path = root.xpath("//script[@id='cachedResultsJson']//text()")
 	  	  json_object =json.loads(path[0])
@@ -101,7 +110,8 @@ def process(flight_data,stopNo,min_price,max_price):#A function to process the r
 	#Sort the airtickets according to ticket price
     	  sortedlist = sorted(lists, key=lambda k: k['ticket price'],reverse=False)
     	  return sortedlist
-		
+    
+#Capture and handle exceptions(when no result can be returned)
     except ValueError:
     	  print ("Retrying...")
     except TypeError:
@@ -122,7 +132,6 @@ if __name__=="__main__":
 	argparser.add_argument('stopNo', help = 'Number of Stops')
 	argparser.add_argument('min_price',help = 'Minimum Price')
 	argparser.add_argument('max_price',help = 'Maximum Price')
-
     
 	# Recognize inputs as arguments for the crawer function
 	args = argparser.parse_args()
