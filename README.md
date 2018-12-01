@@ -61,6 +61,7 @@ python3 Airticket.py roundtrip nyc qla 12/25/2018 01/01/2019 1 0 0 1000
 ```
 The information matching your inputs will be printed to the console for you to check.
 
+
 * Another way to execute the program will be using jupyter notebook
 
 Open a notebook and make a new line.
