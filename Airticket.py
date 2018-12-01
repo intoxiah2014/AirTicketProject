@@ -111,15 +111,15 @@ if __name__=="__main__":
     
 
 	args = argparser.parse_args()
+	triptype = args.triptype
 	source = args.source
 	destination = args.destination
 	startdate = args.startdate
 	returndate = args.returndate
-	triptype = args.triptype
+	AdultNo = args.AdultNo
 	stopNo = args.stopNo
 	max_price = args.max_price
 	min_price = args.min_price
-	AdultNo = args.AdultNo
     
 	print ("Fetching flight details")
 	scraped_data = process(parse(triptype, source, destination, startdate, returndate, AdultNo), stopNo, min_price, max_price)
