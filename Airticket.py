@@ -94,7 +94,7 @@ def process(flight_data,stopNo,min_price,max_price):
     except ValueError:
     	  print ("Retrying...")
     except TypeError:
-	  print ("Couldn't find any flights that satisfies your criteria, please try again...")
+    	  print ("Couldn't find any flights that satisfies your criteria, please try again...")
 		
     return [{"error":"failed to process the page"}]
 
