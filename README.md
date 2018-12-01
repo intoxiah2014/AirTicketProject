@@ -27,7 +27,16 @@ The program requires the user input of:
 
 ## output style
 The output will be an oriented dictionary with information of all trips that satisfies the requests. 
-The output is printed to the console.
+The output consists:
+* Ticket Price Per Persion
+* Flight Duration
+* Stops
+* Departing City
+* Arriving City
+* Airline
+* Plane Type
+* Detailed Timeline of the Trip
+
 
 # Getting Started
 
