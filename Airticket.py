@@ -32,8 +32,10 @@ def process(flight_data,stopNo,min_price,max_price):
     lists=[]
     try:
     	  for i in flight_data['legs'].keys():
-    		  exact_price = flight_data['legs'][i].get('price',{}).get('totalPriceAsDecimal','')		
+    		  exact_price = flight_data['legs'][i].get('price',{}).get('exactPrice','')		
     		  formatted_price = flight_data['legs'][i].get('price',{}).get('formattedPrice','')
+    		  total_departure_time=flight_data['legs'][i].get('departureTime',{}).get('time',{})
+    		  total_arrival_time=flight_data['legs'][i].get('arrivalTime',{}).get('time',{})
     		  departure_location_airport = flight_data['legs'][i].get('departureLocation',{}).get('airportCode','')
     		  departure_location_city = flight_data['legs'][i].get('departureLocation',{}).get('airportCity','')
     		  arrival_location_airport = flight_data['legs'][i].get('arrivalLocation',{}).get('airportCode','')
@@ -76,7 +78,8 @@ def process(flight_data,stopNo,min_price,max_price):
     						    }
     	  	  	  	  timings.append(flight_timing)
     
-    		  flight_info={'stops':stop,
+    		  flight_info={'time range':total_departure_time+'-'+total_arrival_time,
+    				'stops':stop,
     				'ticket price':formatted_price,
     				'departure':departure,
     				'arrival':arrival,
