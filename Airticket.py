@@ -32,11 +32,14 @@ def process(flight_data,stopNo,min_price,max_price):
     lists=[]
     try:
     	  for i in flight_data['legs'].keys():
+    		  exact_price = flight_data['legs'][i].get('price',{}).get('exactPrice','')		
     		  formatted_price = flight_data['legs'][i].get('price',{}).get('formattedPrice','')
-    		  departure_location_airport = flight_data['legs'][i].get('departureLocation',{}).get('airportLongName','')
-    		  departure_location_city = flight_data['legs'][i].get('departureLocation',{}).get('airportCity','')
-    		  arrival_location_airport = flight_data['legs'][i].get('arrivalLocation',{}).get('airportLongName','')
-    		  arrival_location_city = flight_data['legs'][i].get('arrivalLocation',{}).get('airportCity','')
+    		  total_departure_time=flight_data['legs'][i].get('departureTime',{}).get('time',{})
+    		  total_arrival_time=flight_data['legs'][i].get('arrivalTime',{}).get('time',{})
+    		  departure_airport_code = flight_data['legs'][i].get('departureLocation',{}).get('airportCode','')
+    		  departure_city = flight_data['legs'][i].get('departureLocation',{}).get('airportCity','')
+    		  arrival_airport_code = flight_data['legs'][i].get('arrivalLocation',{}).get('airportCode','')
+    		  arrival_city = flight_data['legs'][i].get('arrivalLocation',{}).get('airportCity','')
     		  airline_name = flight_data['legs'][i].get('carrierSummary',{}).get('airlineName','')
     				
     		  no_of_stops = flight_data['legs'][i].get("stops","")
@@ -51,8 +54,8 @@ def process(flight_data,stopNo,min_price,max_price):
     	  	  	  stop = str(no_of_stops)+' Stop'
     
     		  total_flight_duration = "%s days %s hours %s minutes" %(flight_days,flight_hour,flight_minutes)
-    		  departure = departure_location_airport+", "+departure_location_city
-    		  arrival = arrival_location_airport+", "+arrival_location_city
+    		  departure = departure_airport_code+", "+departure_city
+    		  arrival = arrival_airport_code+", "+arrival_city
     		  carrier = flight_data['legs'][i].get('timeline',[])[0].get('carrier',{})
     		  plane = carrier.get('plane','')
     		  plane_code = carrier.get('planeCode','')
@@ -60,7 +63,7 @@ def process(flight_data,stopNo,min_price,max_price):
     		  if not airline_name:
     	  	  	  airline_name = carrier.get('operatedBy','')
     				
-    		  timings = []
+    		  detailed_timelines = []
     		  for timeline in  flight_data['legs'][i].get('timeline',{}):
     	  	  	  if 'departureAirport' in timeline.keys():
     	  	  	  	  departure_airport = timeline['departureAirport'].get('longName','')
@@ -68,31 +71,32 @@ def process(flight_data,stopNo,min_price,max_price):
     	  	  	  	  arrival_airport = timeline.get('arrivalAirport',{}).get('longName','')
     	  	  	  	  arrival_time = timeline.get('arrivalTime',{}).get('time','')
     	  	  	  	  flight_timing = {
-    											'departure_airport':departure_airport,
-    											'departure_time':departure_time,
-    											'arrival_airport':arrival_airport,
-    											'arrival_time':arrival_time
+    							'time range':departure_time+'-'+arrival_time,                                  
+    							'departure_airport':departure_airport,
+    							'arrival_airport':arrival_airport,
     						    }
-    	  	  	  	  timings.append(flight_timing)
+    	  	  	  	  detailed_timelines.append(flight_timing)
     
-    		  flight_info={'stops':stop,
-    				'ticket price':formatted_price,
+    		  flight_info={'ticket price':formatted_price,
+    				'time range':total_departure_time+'-'+total_arrival_time,
+    				'flight duration':total_flight_duration,                    
+    				'stops':stop,
     				'departure':departure,
     				'arrival':arrival,
-    				'flight duration':total_flight_duration,
     				'airline':airline_name,
     				'plane':plane,
-    				'timings':timings,
-    				'plane code':plane_code
+    				'detailed_timelines':detailed_timelines,
     				}
-    		  if int(min_price)<=int(formatted_price) and int(formatted_price)<=int(max_price) and no_of_stops<=int(stopNo):
+    		  if int(min_price)<=int(exact_price) and int(exact_price)<=int(max_price) and no_of_stops<=int(stopNo):
     	  	  	  lists.append(flight_info)
     	  sortedlist = sorted(lists, key=lambda k: k['ticket price'],reverse=False)
     	  return sortedlist
 		
     except ValueError:
-    	  print ("Rerying...")
-			
+    	  print ("Retrying...")
+    except TypeError:
+    	  print ("Couldn't find any flights that satisfies your criteria, please try again...")
+		
     return [{"error":"failed to process the page"}]
 
 # a main function to execute the scraper, however did not figure out how to execute the process function
@@ -118,8 +122,8 @@ if __name__=="__main__":
 	returndate = args.returndate
 	AdultNo = args.AdultNo
 	stopNo = args.stopNo
-	max_price = args.min_price
-	min_price = args.max_price
+	min_price = args.min_price
+	max_price = args.max_price
     
 	print ("Fetching flight details")
 	scraped_data = process(parse(triptype, source, destination, startdate, returndate, AdultNo), stopNo, min_price, max_price)

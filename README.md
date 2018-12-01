@@ -1,13 +1,13 @@
 # Air Ticket Information Search Project
 
-This is a semester project for Autogroup1 of IEORE4501 Fall 2018 at Columbia University.
+This is a project for Autogroup1 of IEORE4501 Fall 2018 at Columbia University.
 
 # What is it?
 
 The project aims to build a web crawler that searches available flight tickets with preferences. 
 Output will be flight tickets that satisfies the input requirements listed from the cheapest to the most expensive one.
 This project will print the available information to your terminal screen.
-The source of the output is the internet.
+Currently, we are able to scrape date from Expedia.com.
 
 # Main Features
 
@@ -27,7 +27,16 @@ The program requires the user input of:
 
 ## output style
 The output will be an oriented dictionary with information of all trips that satisfies the requests. 
-The output is printed to the console.
+The output consists:
+* Ticket Price Per Persion
+* Flight Duration
+* Stops
+* Departing City
+* Arriving City
+* Airline
+* Plane Type
+* Detailed Timeline of the Trip
+
 
 # Getting Started
 
@@ -42,6 +51,9 @@ Python 3.6+ is required to run the program.
 * Windows Installation -- [Windows](https://www.python.org/downloads/windows/)
 * Mac OS X Installation -- [Mac OS X](https://www.python.org/downloads/mac-osx/)
 * Other platforms -- [Other](https://www.python.org/download/other/)
+
+Or use the Jupyter Notebook to run the program.
+You can get the Jupyter Notebook with Python from [Anaconda](https://www.anaconda.com/download/).
 
 In order to get useful information from the webpage, some HTMl parsing modules are also required.
 * requests
