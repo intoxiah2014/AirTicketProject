@@ -31,7 +31,7 @@ def process(flight_data,stopNo,min_price,max_price):
     lists=[]
     try:
     	  for i in flight_data['legs'].keys():
-    	  	  exact_price = flight_data['legs'][i].get('price',{}).get('totalPriceAsDecimal','')
+    		  formatted_price = flight_data['legs'][i].get('price',{}).get('formattedPrice','')
     	  	  departure_location_airport = flight_data['legs'][i].get('departureLocation',{}).get('airportLongName','')
     	  	  departure_location_city = flight_data['legs'][i].get('departureLocation',{}).get('airportCity','')
     	  	  arrival_location_airport = flight_data['legs'][i].get('arrivalLocation',{}).get('airportLongName','')
@@ -49,13 +49,12 @@ def process(flight_data,stopNo,min_price,max_price):
     	  	  else:
     	  	  	  stop = str(no_of_stops)+' Stop'
     
-    	  	  total_flight_duration = "{0} days {1} hours {2} minutes".format(flight_days,flight_hour,flight_minutes)
+    	  	  total_flight_duration = "%s days %s hours %s minutes" % flight_days,flight_hour,flight_minutes
     	  	  departure = departure_location_airport+", "+departure_location_city
     	  	  arrival = arrival_location_airport+", "+arrival_location_city
     	  	  carrier = flight_data['legs'][i].get('timeline',[])[0].get('carrier',{})
     	  	  plane = carrier.get('plane','')
     	  	  plane_code = carrier.get('planeCode','')
-    	  	  formatted_price = "{0:.2f}".format(exact_price)
     
     	  	  if not airline_name:
     	  	  	  airline_name = carrier.get('operatedBy','')
