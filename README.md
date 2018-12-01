@@ -17,7 +17,7 @@ Given required air ticket information, the program will return flight informatio
 The program requires a string input of all travel information, including...
 
 ## output style
-The output will be an oriented dictionary with information of all trips that satisfies the requests.
+The output will be an oriented dictionary with information of all trips that satisfies the requests. The output is printed to the console.
 
 # Getting Started
 
@@ -38,6 +38,7 @@ In order to get useful information from the webpage, some HTMl parsing modules a
 * html
 * json
 * re
+
 These modules will be imported when executing the program. And such importation is included at the beginning of the program, such as:
 ```
 import(requests)
@@ -45,24 +46,16 @@ import(requests)
  
 ## Installing
 
-A step by step series of examples that tell you how to get a development env running
-* 
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+Clone the AirTicketProject and execute the Airticket.py file.
+*update if require packaging
 
 ## How to use?
+
+First, execute the program and you will see some insturctions on the input.
+Type in your inputs and execute the program.
+The information matching your inputs will be printed to the console for you to check.
+```
+```
 
 # Authors
 
