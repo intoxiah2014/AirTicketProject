@@ -1,24 +1,34 @@
-# Air Ticket Search Project
+# Air Ticket Information Search Project
 
 This is a semester project for Autogroup1 of IEORE4501 Fall 2018 at Columbia University.
 
 # What is it?
 
-The project aims to build a web crawler that searches available flight tickets with some preferences. The inputs are Departing airport, Returning airport, Numbers of stops, Preferred airlines, Price range, etc. Output will be flight tickets that satisfies the input requirements listed from the cheapest to the most expensive one.
-This project will print the available information to your terminal.
+The project aims to build a web crawler that searches available flight tickets with preferences. 
+Output will be flight tickets that satisfies the input requirements listed from the cheapest to the most expensive one.
+This project will print the available information to your terminal screen.
 The source of the output is the internet.
 
 # Main Features
 
-Given certain information about the flight, the project allow user to see all available flights' data on the console. 
+Given required air ticket information, the program will return flight information to the console. And the return value will be oriented dictionaries.
+* required input
+* output style
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Here are a list of required preperations to install the programm successfully.
+Python 3.6 is required to run the program.
+
+In order to get useful information from the webpage, some HTMl parsing modules are required to facilitate the project.
+* requests
+* html
+* json
+* re
 
 ```
 Give examples
@@ -27,6 +37,7 @@ Give examples
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
+* 
 
 Say what the step will be
 
@@ -42,14 +53,20 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
+## How to use?
+
 ## Authors
 
 * **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Aijing** -- [Aijing](https://github.com/muliamuli)
+* **Chen Wang** -- [Chen Want](https://github.com/az2525)
+* **Siyuan Liu** -- [Siyuan Liu](https://github.com/intoxiah2014)
 
 ## Acknowledgments
 
 * Hat tip to anyone whose code was used
 * Inspiration
 * etc
+
+## Lisence
+
