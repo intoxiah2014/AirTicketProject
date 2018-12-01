@@ -1,12 +1,12 @@
 import requests
 from lxml import html
 import json
+import re
 def parse(triptype,source,destination,startdate,returndate,AdultNo):
     pattern=r'\d+'
 	  dapartdate=re.findall(pattern,startdate)
 	  enddate=re.findall(pattern,returndate)    
 	  for i in range(5):
-		try:
 			if triptype=='oneway':
 				url = "https://www.expedia.com/Flights-Search?trip=oneway&leg1=from%3A{0}%2Cto%3A{1}%2Cdeparture%3A{2}%2F{3}%2F{4}TANYT&passengers=adults%3A{5}%2Cchildren%3A0%2Cseniors%3A0%2Cinfantinlap%3AY&options=cabinclass%3Aeconomy&mode=search&origref=www.expedia.com".format(source,destination,dapartdate[0],dapartdate[1],dapartdate[2],AdultNo)
 			elif triptype=='roundtrip':
