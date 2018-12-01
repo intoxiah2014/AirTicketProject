@@ -46,15 +46,22 @@ import(requests)
  
 ## Installing
 
-Clone the AirTicketProject and execute the Airticket.py file.
-*update if require packaging
+Clone the AirTicketProject to your terminal.
 
 ## How to use?
 
-First, execute the program and you will see some insturctions on the input.
-Type in your inputs and execute the program.
+First, execute the Airticket.py with a helper function [-h] in command line, you will be able to see the required input and the style.
+```
+Airticket.py -h
+```
+Following the style of input, type in your inputs and then execute the program.
+For example, a serach about one-way ticket for one adult passanger on date 12/25/2018 
+```
+python3 Airticket.py 
+```
 The information matching your inputs will be printed to the console for you to check.
 ```
+
 ```
 
 # Authors
