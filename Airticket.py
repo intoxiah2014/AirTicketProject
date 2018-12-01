@@ -98,15 +98,16 @@ def process(flight_data,stopNo,min_price,max_price):
 # a main function to execute the scraper, however did not figure out how to execute the process function
 if __name__=="__main__":
 	argparser = argparse.ArgumentParser()
+	argparser.add_argument('triptype', help = '"oneway" or "roundtrip"')
 	argparser.add_argument('source',help = 'Source airport code')
 	argparser.add_argument('destination',help = 'Destination airport code')
 	argparser.add_argument('startdate',help = 'MM/DD/YYYY')
 	argparser.add_argument('returndate',help = 'MM/DD/YYYY')
-	argparser.add_argument('triptype', help = '"oneway" or "roundtrip"')
+	argparser.add_argument('AdultNo',help = 'Number of Adults')
 	argparser.add_argument('stopNo', help = 'Number of Stops')
 	argparser.add_argument('max_price',help = 'Maximum Price')
 	argparser.add_argument('min_price',help = 'Minimum Price')
-	argparser.add_argument('AdultNo',help = 'Number of Adults')
+
     
 
 	args = argparser.parse_args()
