@@ -69,7 +69,7 @@ Suppose you have downloaded the Airticket.py to your jupyter notebook.
 An example search will be for roundtrip, nonstop ticket for one adult passanger leave on date 12/25/2018 and return on 01/01/2019 from New York to Los Angeles with a price range from $0 to $1000. In this case, the input will be:
 ```
 %run Airticket.py roundtrip nyc qla 12/25/2018 01/01/2019 1 0 0 1000
-``
+```
 
 # Authors
 
