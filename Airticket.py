@@ -105,8 +105,8 @@ if __name__=="__main__":
 	argparser.add_argument('returndate',help = 'MM/DD/YYYY')
 	argparser.add_argument('AdultNo',help = 'Number of Adults')
 	argparser.add_argument('stopNo', help = 'Number of Stops')
-	argparser.add_argument('max_price',help = 'Maximum Price')
 	argparser.add_argument('min_price',help = 'Minimum Price')
+	argparser.add_argument('max_price',help = 'Maximum Price')
 
     
 
@@ -118,8 +118,8 @@ if __name__=="__main__":
 	returndate = args.returndate
 	AdultNo = args.AdultNo
 	stopNo = args.stopNo
-	max_price = args.max_price
-	min_price = args.min_price
+	max_price = args.min_price
+	min_price = args.max_price
     
 	print ("Fetching flight details")
 	scraped_data = process(parse(triptype, source, destination, startdate, returndate, AdultNo), stopNo, min_price, max_price)
