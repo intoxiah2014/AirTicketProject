@@ -92,8 +92,10 @@ def process(flight_data,stopNo,min_price,max_price):
     	  return sortedlist
 		
     except ValueError:
-    	  print ("Rerying...")
-			
+    	  print ("Retrying...")
+    except TypeError:
+	  print("Couldn't find any flights that satisfies your criteria, please try again...")
+		
     return [{"error":"failed to process the page"}]
 
 # a main function to execute the scraper, however did not figure out how to execute the process function
