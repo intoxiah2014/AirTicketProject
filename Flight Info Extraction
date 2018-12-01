@@ -1,7 +1,7 @@
 import requests
 from lxml import html
 import json
-def parse(triptype,source,destination,startdate,returndate,stopNo,AdultNo,min_price,max_price):
+def parse(triptype,source,destination,startdate,returndate,AdultNo):
     pattern=r'\d+'
 	  dapartdate=re.findall(pattern,startdate)
 	  enddate=re.findall(pattern,returndate)    
