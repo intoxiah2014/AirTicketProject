@@ -12,14 +12,18 @@ The source of the output is the internet.
 # Main Features
 
 Given required air ticket information, the program will return flight information to the console. And the return value will be oriented dictionaries.
-* required input
-* output style
 
-## Getting Started
+## required input
+The program requires a string input of all travel information, including...
+
+## output style
+The output will be an oriented dictionary with information of all trips that satisfies the requests.
+
+# Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-### Prerequisites
+## Prerequisites
 
 Here are a list of required preperations to install the programm successfully.
 
@@ -39,7 +43,7 @@ These modules will be imported when executing the program. And such importation 
 import(requests)
 ```
  
-### Installing
+## Installing
 
 A step by step series of examples that tell you how to get a development env running
 * 
@@ -60,12 +64,12 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## How to use?
 
-## Authors
+# Authors
 
 * **Aijing** -- [Aijing](https://github.com/muliamuli)
 * **Chen Wang** -- [Chen Want](https://github.com/az2525)
 * **Siyuan Liu** -- [Siyuan Liu](https://github.com/intoxiah2014)
 
-## Acknowledgments
+# Acknowledgments
 
 Our project was inspired by scrapehero's project -- [scrapehero](https://gist.github.com/scrapehero/bc34513e2ea72dc0890ad47fbd8a1a4f)
