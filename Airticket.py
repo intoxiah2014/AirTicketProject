@@ -67,23 +67,22 @@ def process(flight_data,stopNo,min_price,max_price):
     	  	  	  	  departure_time = timeline['departureTime'].get('time','')
     	  	  	  	  arrival_airport = timeline.get('arrivalAirport',{}).get('longName','')
     	  	  	  	  arrival_time = timeline.get('arrivalTime',{}).get('time','')
-    	  	  	  	  flight_timing = {
-    											'departure_airport':departure_airport,
-    											'departure_time':departure_time,
-    											'arrival_airport':arrival_airport,
-    											'arrival_time':arrival_time
+    	  	  	  	  flight_timing = {'departure_airport':departure_airport,
+    						'departure_time':departure_time,
+    						'arrival_airport':arrival_airport,
+    						'arrival_time':arrival_time
     						}
     	  	  	  	  timings.append(flight_timing)
     
     	  	  flight_info={'stops':stop,
-    					'ticket price':formatted_price,
-    					'departure':departure,
-    					'arrival':arrival,
-    					'flight duration':total_flight_duration,
-    					'airline':airline_name,
-    					'plane':plane,
-    					'timings':timings,
-    					'plane code':plane_code
+    				'ticket price':formatted_price,
+    				'departure':departure,
+    				'arrival':arrival,
+    				'flight duration':total_flight_duration,
+    				'airline':airline_name,
+    				'plane':plane,
+    				'timings':timings,
+    				'plane code':plane_code
     				}
     	  	  if int(min_price)<=int(exact_price) and int(exact_price)<=int(max_price) and no_of_stops<=int(stopNo):
     	  	  	  lists.append(flight_info)
