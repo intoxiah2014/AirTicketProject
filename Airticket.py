@@ -116,7 +116,8 @@ def process(flight_data,stopNo,min_price,max_price):#A function to process the r
     	  print ("Retrying...")
     except TypeError:
     	  print ("Couldn't find any flights that satisfies your criteria, please try again...")
-		
+
+#Error statement
     return [{"error":"failed to process the page"}]
 
 # A main function to execute the scraper
