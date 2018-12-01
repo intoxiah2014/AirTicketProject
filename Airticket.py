@@ -32,6 +32,7 @@ def process(flight_data,stopNo,min_price,max_price):
     lists=[]
     try:
     	  for i in flight_data['legs'].keys():
+    		  exact_price = flight_data['legs'][i].get('price',{}).get('totalPriceAsDecimal','')		
     		  formatted_price = flight_data['legs'][i].get('price',{}).get('formattedPrice','')
     		  departure_location_airport = flight_data['legs'][i].get('departureLocation',{}).get('airportLongName','')
     		  departure_location_city = flight_data['legs'][i].get('departureLocation',{}).get('airportCity','')
@@ -85,7 +86,7 @@ def process(flight_data,stopNo,min_price,max_price):
     				'timings':timings,
     				'plane code':plane_code
     				}
-    		  if int(min_price)<=int(formatted_price) and int(formatted_price)<=int(max_price) and no_of_stops<=int(stopNo):
+    		  if int(min_price)<=int(exact_price) and int(exact_price)<=int(max_price) and no_of_stops<=int(stopNo):
     	  	  	  lists.append(flight_info)
     	  sortedlist = sorted(lists, key=lambda k: k['ticket price'],reverse=False)
     	  return sortedlist
