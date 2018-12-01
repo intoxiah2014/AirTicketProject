@@ -14,7 +14,7 @@ The source of the output is the internet.
 Given required air ticket information, the program will return flight information to the console. And the return value will be oriented dictionaries.
 
 ## required input
-The program requires a string input of all travel information, including...
+The program requires multiple requests for user 
 
 ## output style
 The output will be an oriented dictionary with information of all trips that satisfies the requests. The output is printed to the console.
@@ -46,15 +46,29 @@ import(requests)
  
 ## Installing
 
-Clone the AirTicketProject and execute the Airticket.py file.
-*update if require packaging
+Clone the AirTicketProject to your terminal.
 
 ## How to use?
 
-First, execute the program and you will see some insturctions on the input.
-Type in your inputs and execute the program.
-The information matching your inputs will be printed to the console for you to check.
+* First, execute the Airticket.py with a helper function [-h] in command line, you will be able to see the required input and the style.
 ```
+Airticket.py -h
+```
+Following the style of input, type in your inputs and then execute the program.
+For example, when searching for roundtrip, nonstop ticket for one adult passanger leave on date 12/25/2018 and return on 01/01/2019 from New York to Los Angeles with a price range from $0 to $1000, the input will be:
+```
+python3 Airticket.py roundtrip nyc qla 12/25/2018 01/01/2019 1 0 0 1000
+```
+The information matching your inputs will be printed to the console for you to check.
+
+
+* Another way to execute the program will be using jupyter notebook
+
+Open a notebook and make a new line.
+Suppose you have downloaded the Airticket.py to your jupyter notebook.
+An example search will be for roundtrip, nonstop ticket for one adult passanger leave on date 12/25/2018 and return on 01/01/2019 from New York to Los Angeles with a price range from $0 to $1000. In this case, the input will be:
+```
+%run Airticket.py roundtrip nyc qla 12/25/2018 01/01/2019 1 0 0 1000
 ```
 
 # Authors
