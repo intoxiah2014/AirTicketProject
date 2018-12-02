@@ -25,10 +25,10 @@ def parse(triptype,origin,destination,startdate,returndate,AdultNo,bookingsite):
 	   else:#Fetching flight details from Orbitz
     		for i in range(5):
 	  	  if triptype=='oneway':
-	  	  	    url = "https://www.orbitz.com/Flights-Search?trip=oneway&leg1=from%3A{0}%2Cto%3A{1}%2Cdeparture%3A{2}%2F{3}%2F{4}TANYT&passengers=adults%3A{5}%2Cchildren%3A0%2Cseniors%3A0%2Cinfantinlap%3AY&options=cabinclass%3Aeconomy&mode=search&origref=www.orbitz.com".format(source,destination,dapartdate[0],dapartdate[1],dapartdate[2],AdultNo)
+	  	  	    url = "https://www.orbitz.com/Flights-Search?trip=oneway&leg1=from%3A{0}%2Cto%3A{1}%2Cdeparture%3A{2}%2F{3}%2F{4}TANYT&passengers=adults%3A{5}%2Cchildren%3A0%2Cseniors%3A0%2Cinfantinlap%3AY&options=cabinclass%3Aeconomy&mode=search&origref=www.orbitz.com".format(origin,destination,dapartdate[0],dapartdate[1],dapartdate[2],AdultNo)
 	  	  elif triptype=='roundtrip':
                 	    url = "https://www.orbitz.com/Flights-Search?flight-type=on&starDate={0}%2F{1}%2F{2}&endDate={3}%2F{4}%2F{5}&_xpid=11905%7C1&mode=search&trip=roundtrip&leg1=from%3A{6}%2Cto%3A{7}%2Cdeparture%3A{8}%2F{9}%2F{10}TANYT&leg2=from%3A{11}%2Cto%3A{12}%2Cdeparture%3A{13}%2F{14}%2F{15}TANYT&passengers=children%3A0%2Cadults%3A{16}%2Cseniors%3A0%2Cinfantinlap%3AY"\
-		.format(dapartdate[0],dapartdate[1],dapartdate[2],enddate[0],enddate[1],enddate[2],source,destination,dapartdate[0],dapartdate[1],dapartdate[2],destination,source,enddate[0],enddate[1],enddate[2],AdultNo)
+		.format(dapartdate[0],dapartdate[1],dapartdate[2],enddate[0],enddate[1],enddate[2],origin,destination,dapartdate[0],dapartdate[1],dapartdate[2],destination,source,enddate[0],enddate[1],enddate[2],AdultNo)
 	  	  else:
 	  	  	  raise ValueError('wrong input')	  	
 	
