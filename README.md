@@ -21,7 +21,7 @@ The program requires the user input of:
 * Number of Adults
 * Maximum number of stops acceptable
 * Price Range of the ticket (Minimum and Maximum Price)
-* Website Name
+* Website Name (Expedia or Orbitz)
 
 ## output style
 The output will be an oriented dictionary with information of all trips that satisfies the requests. 
@@ -91,7 +91,7 @@ The information matching your inputs will be printed to the console for you to c
 
 # Authors
 
-* **Aijing** -- [Aijing](https://github.com/az2525)
+* **Aijing Zhang** -- [Aijing](https://github.com/az2525)
 * **Chen Wang** -- [Chen Wang](https://github.com/muliamuli)
 * **Siyuan Liu** -- [Siyuan Liu](https://github.com/intoxiah2014)
 
