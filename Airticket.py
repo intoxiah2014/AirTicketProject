@@ -5,7 +5,7 @@ import re
 import argparse
 
 #A function that fetch flight information and place it into a dictionary from air ticket booking website
-def parse(triptype,source,destination,startdate,returndate,AdultNo): 
+def parse(triptype,origin,destination,startdate,returndate,AdultNo): 
 
 	#Using regular expression to seperate date imput into parts
 	  pattern=r'\d+'
@@ -15,10 +15,10 @@ def parse(triptype,source,destination,startdate,returndate,AdultNo):
 	#Formatting our url by the search criteria
 	  for i in range(5):
 	  	  if triptype=='oneway':
-	  	  	  url = "https://www.expedia.com/Flights-Search?trip=oneway&leg1=from%3A{0}%2Cto%3A{1}%2Cdeparture%3A{2}%2F{3}%2F{4}TANYT&passengers=adults%3A{5}%2Cchildren%3A0%2Cseniors%3A0%2Cinfantinlap%3AY&options=cabinclass%3Aeconomy&mode=search&origref=www.expedia.com".format(source,destination,dapartdate[0],dapartdate[1],dapartdate[2],AdultNo)
+	  	  	  url = "https://www.expedia.com/Flights-Search?trip=oneway&leg1=from%3A{0}%2Cto%3A{1}%2Cdeparture%3A{2}%2F{3}%2F{4}TANYT&passengers=adults%3A{5}%2Cchildren%3A0%2Cseniors%3A0%2Cinfantinlap%3AY&options=cabinclass%3Aeconomy&mode=search&origref=www.expedia.com".format(origin,destination,dapartdate[0],dapartdate[1],dapartdate[2],AdultNo)
 	  	  elif triptype=='roundtrip':
 	  	  	  url="https://www.expedia.com/Flights-Search?flight-type=on&starDate={0}%2F{1}%2F{2}&endDate={3}%2F{4}%2F{5}&mode=search&trip=roundtrip&leg1=from%3A{6}%2Cto%3A{7}%2Cdeparture%3A{8}%2F{9}%2F{10}TANYT&leg2=from%3A{11}%2Cto%3A{12}%2Cdeparture%3A{13}%2F{14}%2F{15}TANYT&passengers=children%3A0%2Cadults%3A{16}%2Cseniors%3A0%2Cinfantinlap%3AY"\
-                .format(dapartdate[0],dapartdate[1],dapartdate[2],enddate[0],enddate[1],enddate[2],source,destination,dapartdate[0],dapartdate[1],dapartdate[2],destination,source,enddate[0],enddate[1],enddate[2],AdultNo)
+                .format(dapartdate[0],dapartdate[1],dapartdate[2],enddate[0],enddate[1],enddate[2],origin,destination,dapartdate[0],dapartdate[1],dapartdate[2],destination,origin,enddate[0],enddate[1],enddate[2],AdultNo)
 	  	  else:
 	  	  	  raise ValueError('wrong input') 
 
@@ -126,26 +126,26 @@ def process(flight_data,stopNo,min_price,max_price):#A function to process the r
     	  print ("Couldn't find any flights that satisfies your criteria, please try again...")
 
 #Error statement
-    return [{"error":"Failed to process the page"}]
+    return [{"error":"Failed to fetch data"}]
 
 # A main function to execute the scraper
 if __name__=="__main__":
 	# Add user Inputs and helper text
 	argparser = argparse.ArgumentParser()
 	argparser.add_argument('triptype', help = '"oneway" or "roundtrip"')
-	argparser.add_argument('source',help = 'Source airport code')
-	argparser.add_argument('destination',help = 'Destination airport code')
+	argparser.add_argument('origin',help = 'Origin airport abbreviation')
+	argparser.add_argument('destination',help = 'Destination airport abbreviation')
 	argparser.add_argument('startdate',help = 'MM/DD/YYYY')
 	argparser.add_argument('returndate',help = 'MM/DD/YYYY')
 	argparser.add_argument('AdultNo',help = 'Number of Adults')
 	argparser.add_argument('stopNo', help = 'Number of Stops')
-	argparser.add_argument('min_price',help = 'Minimum Price')
-	argparser.add_argument('max_price',help = 'Maximum Price')
+	argparser.add_argument('min_price',help = 'Minimum Price Bound')
+	argparser.add_argument('max_price',help = 'Maximum Price Bound')
     
 	# Recognize inputs as arguments for the crawer function
 	args = argparser.parse_args()
 	triptype = args.triptype
-	source = args.source
+	origin = args.origin
 	destination = args.destination
 	startdate = args.startdate
 	returndate = args.returndate
@@ -156,9 +156,9 @@ if __name__=="__main__":
 	
     	# Execution of the crawler
 	print ("Fetching flight details")
-	scraped_data = process(parse(triptype, source, destination, startdate, returndate, AdultNo), stopNo, min_price, max_price)
+	scraped_data = process(parse(triptype, origin, destination, startdate, returndate, AdultNo), stopNo, min_price, max_price)
 	
 	# Write the selected json data to a file
 	print ("Writing data to output file")
-	with open('%s-%s-flight-results.json'%(source, destination),'w') as fp:
+	with open('%s-%s-flight-results.json'%(origin, destination),'w') as fp:
 		json.dump(scraped_data,fp,indent = 4)
