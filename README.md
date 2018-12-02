@@ -15,15 +15,12 @@ Given required air ticket information, the program will return flight informatio
 
 ## required input
 The program requires the user input of:
-* Trip type, either one-way or roundtrip
-* Departing Airport (or city) Code
-* Destination Airport (or city) Code
-* Leave Date
-* Return Date
+* Trip type, one-way or roundtrip
+* Start Date and Return Date
+* Departing and Destination Airport (or city) Code
 * Number of Adults
-* Stop Number
-* Minimum Price 
-* Maximum Price of the trip
+* Maximum number of stops acceptable
+* Price Range of the ticket (Minimum and Maximum Price)
 
 ## output style
 The output will be an oriented dictionary with information of all trips that satisfies the requests. 
@@ -31,8 +28,8 @@ The output consists:
 * Ticket Price Per Persion
 * Flight Duration
 * Stops
-* Departing City
-* Arriving City
+* Departing Airport Code
+* Arriving Airport Code
 * Airline
 * Plane Type
 * Detailed Timeline of the Trip
@@ -73,27 +70,21 @@ Clone the AirTicketProject to your terminal.
 ## How to use?
 
 ### Method 1: Execute in Command Line
-First, execute the Airticket.py with a helper function [-h] in command line, you will be able to see the required input and the style.
+Execute the program by typing in this command in your conmmand line or terminal
 ```
-Airticket.py -h
+python3 Airticket.py
 ```
-Following the style of input, type in your inputs and then execute the program.
-For example, when searching for roundtrip, nonstop ticket for one adult passanger leave on date 12/25/2018 and return on 01/01/2019 from New York to Los Angeles with a price range from $0 to $1000, the input will be:
-```
-python3 Airticket.py roundtrip nyc qla 12/25/2018 01/01/2019 1 0 0 1000
-```
+Detailed Instruction regarding the input style will be provided step by step.
 The information matching your inputs will be printed to the console for you to check.
 
 
 ### Method 2: Execute in Jupyter Notebook
 Another way to execute the program will be using Jupyter Notebook
-
-Open a notebook and make a new line.
-Suppose you have downloaded the Airticket.py to your Jupyter Notebook.
-An example search will be for roundtrip, nonstop ticket for one adult passanger leave on date 12/25/2018 and return on 01/01/2019 from New York to Los Angeles with a price range from $0 to $1000. In this case, the input will be:
+Open a notebook file in Jupyter Notebook and make a new line.
 ```
-%run Airticket.py roundtrip nyc qla 12/25/2018 01/01/2019 1 0 0 1000
+%run Airticket.py
 ```
+Detailed Instruction regarding the input style will be provided step by step.
 The information matching your inputs will be printed to the console for you to check.
 
 # Authors
