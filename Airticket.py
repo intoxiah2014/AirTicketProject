@@ -12,7 +12,7 @@ def parse(triptype,origin,destination,startdate,returndate,AdultNo,bookingsite):
 	  enddate=re.findall(pattern,returndate)    
           
 	#Formatting our url by the search criteria(including booking website)
-	  bookingsite=bookingwsite.lower()
+	  bookingsite=bookingsite.lower()
 	  if bookingsite == "expedia":#Fetching flight details from Expedia
 		for i in range(5):
 	  	  if triptype=='oneway':
