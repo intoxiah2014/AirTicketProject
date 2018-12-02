@@ -42,7 +42,7 @@ def process(flight_data,stopNo,min_price,max_price):#A function to process the r
     	  for i in flight_data['legs'].keys():
 		#Select useful info from raw data for every choice
 		#Price info
-    		  exact_price = flight_data['legs'][i].get('price',{}).get('exactPrice','')		
+		  exact_price = flight_data['legs'][i].get('price',{}).get('exactPrice','')		
     		  formatted_price = flight_data['legs'][i].get('price',{}).get('formattedPrice','')
 		
 		#Specific leaving and arriving time
@@ -50,28 +50,28 @@ def process(flight_data,stopNo,min_price,max_price):#A function to process the r
     		  arrival_time=flight_data['legs'][i].get('arrivalTime',{}).get('time',{})
     		 
 		#Departure and arrival airport codes and their location cities
-    		  departure_airport_code = flight_data['legs'][i].get('departureLocation',{}).get('airportCode','')
+		  departure_airport_code = flight_data['legs'][i].get('departureLocation',{}).get('airportCode','')
     		  departure_city = flight_data['legs'][i].get('departureLocation',{}).get('airportCity','')
     		  arrival_airport_code = flight_data['legs'][i].get('arrivalLocation',{}).get('airportCode','')
     		  arrival_city = flight_data['legs'][i].get('arrivalLocation',{}).get('airportCity','')
     		 
 		#Carrier information
-    		  airline_name = flight_data['legs'][i].get('carrierSummary',{}).get('airlineName','')
+		  airline_name = flight_data['legs'][i].get('carrierSummary',{}).get('airlineName','')
     		  carrier = flight_data['legs'][i].get('timeline',[])[0].get('carrier',{})
     		  plane = carrier.get('plane','')
 		
 		#Duration of the flight in day/hour/minute
     		  flight_duration = flight_data['legs'][i].get('duration',{})
-    		  flight_days = flight_duration.get('numOfDays','')
+                  flight_days = flight_duration.get('numOfDays','')
     		  flight_hours = flight_duration.get('hours','')
     		  flight_minutes = flight_duration.get('minutes','')
     		  
 		#Format stop numbers		  
-    		  num_of_stops = flight_data['legs'][i].get("stops","")		
+		  num_of_stops = flight_data['legs'][i].get("stops","")		
     		  if num_of_stops==0:
     	  	  	  stop = "Nonstop"
     		  else:
-    	  	  	  stop = str(num_of_stops)+' Stop'
+    	  	  	  stop = str(no_of_stops)+' Stop'
 				
 		#Format time range, flight duration, departure and arrival    
     		  time_range = departure_time+'-'+arrival_time
@@ -111,7 +111,7 @@ def process(flight_data,stopNo,min_price,max_price):#A function to process the r
     				}
 			
 		#Choose airticket info according to user's requirement			
-    		  if int(min_price)<=int(exact_price) and int(exact_price)<=int(max_price) and num_of_stops<=int(stopNo):
+    		  if int(min_price)<=int(exact_price) and int(exact_price)<=int(max_price) and no_of_stops<=int(stopNo):
     	  	  	  lists.append(flight_info)
 			
 	#Sort the airtickets according to ticket price
@@ -131,15 +131,16 @@ def process(flight_data,stopNo,min_price,max_price):#A function to process the r
 if __name__=="__main__":
 	# Add user Inputs and helper text
 	argparser = argparse.ArgumentParser()
-	argparser.add_argument('triptype', help = '"oneway" or "roundtrip"')
+	argparser.add_argument('triptype',help = '"oneway" or "roundtrip"')
 	argparser.add_argument('origin',help = 'Origin airport abbreviation')
 	argparser.add_argument('destination',help = 'Destination airport abbreviation')
 	argparser.add_argument('startdate',help = 'MM/DD/YYYY')
 	argparser.add_argument('returndate',help = 'MM/DD/YYYY')
 	argparser.add_argument('AdultNo',help = 'Number of Adults')
-	argparser.add_argument('stopNo', help = 'Number of Stops')
+	argparser.add_argument('stopNo',help = 'Number of Stops')
 	argparser.add_argument('min_price',help = 'Minimum Price Bound')
 	argparser.add_argument('max_price',help = 'Maximum Price Bound')
+	argparser.add_argument('bookingsite',help = '"Expedia" or "Orbitz"')
     
 	# Recognize inputs as arguments for the crawer function
 	args = argparser.parse_args()
@@ -152,12 +153,14 @@ if __name__=="__main__":
 	stopNo = args.stopNo
 	min_price = args.min_price
 	max_price = args.max_price
+	bookingsite = args.bookingsite
 	
     	# Execution of the crawler
-	print ("Fetching flight details")
-	scraped_data = process(parse(triptype, origin, destination, startdate, returndate, AdultNo), stopNo, min_price, max_price)
+	print ("Thank you for choosing our flight crawler!")
+	print ("Fetching flight details...")
+	scraped_data = process(parse(triptype, origin, destination, startdate, returndate, AdultNo, bookingsite), stopNo, min_price, max_price)
 	
 	# Write the selected json data to a file
-	print ("Writing data to output file")
+	print ("Writing data to output file...")
 	with open('%s-%s-flight-results.json'%(origin, destination),'w') as fp:
 		json.dump(scraped_data,fp,indent = 4)
