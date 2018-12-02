@@ -90,8 +90,8 @@ The information matching your inputs will be printed to the console for you to c
 
 # Authors
 
-* **Aijing** -- [Aijing](https://github.com/muliamuli)
-* **Chen Wang** -- [Chen Want](https://github.com/az2525)
+* **Aijing** -- [Aijing](https://github.com/az2525)
+* **Chen Wang** -- [Chen Wang](https://github.com/muliamuli)
 * **Siyuan Liu** -- [Siyuan Liu](https://github.com/intoxiah2014)
 
 # Acknowledgments
