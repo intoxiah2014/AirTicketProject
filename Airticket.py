@@ -162,5 +162,5 @@ if __name__=="__main__":
 	
 	# Write the selected json data to a file
 	print ("Writing data to output file...")
-	with open('%s-%s-flight-results.json'%(origin, destination),'w') as fp:
-		json.dump(scraped_data,fp,indent = 4)
+	with open('Your-flight-results-%s-%s.json'%(origin, destination),'w') as fp:
+		json.dump(scraped_data,fp)
