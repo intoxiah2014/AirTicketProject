@@ -6,7 +6,6 @@ import argparse
 
 #A function that fetch flight information and place it into a dictionary from air ticket booking website
 def parse(triptype,origin,destination,startdate,returndate,AdultNo): 
-
 	#Using regular expression to seperate date imput into parts
 	  pattern=r'\d+'
 	  dapartdate=re.findall(pattern,startdate)
