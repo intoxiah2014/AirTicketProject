@@ -42,33 +42,41 @@ def process(flight_data,stopNo,min_price,max_price):#A function to process the r
     try:
     	  for i in flight_data['legs'].keys():
 		#Select useful info from raw data for every choice
-    		  exact_price = flight_data['legs'][i].get('price',{}).get('exactPrice','')		
+		#Price info
+		  exact_price = flight_data['legs'][i].get('price',{}).get('exactPrice','')		
     		  formatted_price = flight_data['legs'][i].get('price',{}).get('formattedPrice','')
-    		  total_departure_time=flight_data['legs'][i].get('departureTime',{}).get('time',{})
-    		  total_arrival_time=flight_data['legs'][i].get('arrivalTime',{}).get('time',{})
-    		  departure_airport_code = flight_data['legs'][i].get('departureLocation',{}).get('airportCode','')
+		
+		#Specific leaving and arriving time
+    		  departure_time=flight_data['legs'][i].get('departureTime',{}).get('time',{})
+    		  arrival_time=flight_data['legs'][i].get('arrivalTime',{}).get('time',{})
+    		 
+		#Departure and arrival airport codes and their location cities
+		  departure_airport_code = flight_data['legs'][i].get('departureLocation',{}).get('airportCode','')
     		  departure_city = flight_data['legs'][i].get('departureLocation',{}).get('airportCity','')
     		  arrival_airport_code = flight_data['legs'][i].get('arrivalLocation',{}).get('airportCode','')
     		  arrival_city = flight_data['legs'][i].get('arrivalLocation',{}).get('airportCity','')
-    		  airline_name = flight_data['legs'][i].get('carrierSummary',{}).get('airlineName','')
+    		 
+		#Carrier information
+		  airline_name = flight_data['legs'][i].get('carrierSummary',{}).get('airlineName','')
     		  carrier = flight_data['legs'][i].get('timeline',[])[0].get('carrier',{})
     		  plane = carrier.get('plane','')
-    				
-    		  no_of_stops = flight_data['legs'][i].get("stops","")
+		
+		#Duration of the flight in day/hour/minute
     		  flight_duration = flight_data['legs'][i].get('duration',{})
-    		  flight_hour = flight_duration.get('hours','')
+                  flight_days = flight_duration.get('numOfDays','')
+    		  flight_hours = flight_duration.get('hours','')
     		  flight_minutes = flight_duration.get('minutes','')
-    		  flight_days = flight_duration.get('numOfDays','')
-
-		#Format stop numbers		
-    		  if no_of_stops==0:
+    		  
+		#Format stop numbers		  
+		  num_of_stops = flight_data['legs'][i].get("stops","")		
+    		  if num_of_stops==0:
     	  	  	  stop = "Nonstop"
     		  else:
     	  	  	  stop = str(no_of_stops)+' Stop'
 				
 		#Format time range, flight duration, departure and arrival    
-    		  time_range = total_departure_time+'-'+total_arrival_time
-    		  total_flight_duration = "%s days %s hours %s minutes" %(flight_days,flight_hour,flight_minutes)
+    		  time_range = departure_time+'-'+arrival_time
+    		  total_flight_duration = "%s days %s hours %s minutes" %(flight_days,flight_hours,flight_minutes)
     		  departure = departure_airport_code+", "+departure_city
     		  arrival = arrival_airport_code+", "+arrival_city
 			
@@ -118,7 +126,7 @@ def process(flight_data,stopNo,min_price,max_price):#A function to process the r
     	  print ("Couldn't find any flights that satisfies your criteria, please try again...")
 
 #Error statement
-    return [{"error":"failed to process the page"}]
+    return [{"error":"Failed to process the page"}]
 
 # A main function to execute the scraper
 if __name__=="__main__":
