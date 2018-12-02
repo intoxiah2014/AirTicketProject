@@ -2,7 +2,6 @@ import requests
 from lxml import html
 import json
 import re
-import argparse
 
 #A function that fetch flight information and place it into a dictionary from air ticket booking website
 def parse(triptype,origin,destination,startdate,returndate,AdultNo,bookingsite): 
@@ -140,38 +139,36 @@ def process(flight_data,stopNo,min_price,max_price):#A function to process the r
 
 # A main function to execute the scraper
 if __name__=="__main__":
-	# Add user Inputs and helper text
-	argparser = argparse.ArgumentParser()
-	argparser.add_argument('triptype',help = '"oneway" or "roundtrip"')
-	argparser.add_argument('origin',help = 'Origin airport abbreviation')
-	argparser.add_argument('destination',help = 'Destination airport abbreviation')
-	argparser.add_argument('startdate',help = 'MM/DD/YYYY')
-	argparser.add_argument('returndate',help = 'MM/DD/YYYY')
-	argparser.add_argument('AdultNo',help = 'Number of Adults')
-	argparser.add_argument('stopNo',help = 'Number of Stops')
-	argparser.add_argument('min_price',help = 'Minimum Price Bound')
-	argparser.add_argument('max_price',help = 'Maximum Price Bound')
-	argparser.add_argument('bookingsite',help = '"Expedia" or "Orbitz"')
-    
-	# Recognize inputs as arguments for the crawer function
-	args = argparser.parse_args()
-	triptype = args.triptype
-	origin = args.origin
-	destination = args.destination
-	startdate = args.startdate
-	returndate = args.returndate
-	AdultNo = args.AdultNo
-	stopNo = args.stopNo
-	min_price = args.min_price
-	max_price = args.max_price
-	bookingsite = args.bookingsite
+	print ("Thank you for choosing our flight crawler!")
+	# Allow user to enter their required triptype
+	triptype=input("Please enter your trip type: 1 for oneway, 2 for roundtrip\n")
+	
+	# Allow user to enter the dates in date format
+	pattern=r'^\d{2}/\d{2}/\d{4}$' 
+	if triptype=='1':
+		startdate=input("Please enter your startdate: format in MM/DD/YYYY:\n")
+		if(bool(re.search(pattern, startdate))==False):
+			raise ValueError('Wrong date format')            
+	elif triptype=='2':       
+		(startdate,returndate)=input("Please enter your startdate and returndate: format in MM/DD/YYYY\nie.12/10/2018 12/31/2018\n").split()
+		if(bool(re.search(pattern, startdate)) and bool(re.search(pattern, returndate))==False):
+			raise ValueError('Wrong date format') 
+	else:
+		raise ValueError("Wrong triptype! Please try again")
+	
+	# Allow user to enter the origin, destination, adult number, stop number, minimum price and maximum price
+	(origin,destination)=input("Please enter your source and destination:\nie:nyc mia\n").split()
+	(AdultNo,stopNo)=input("Please enter number of adults and maximum number of stops you accept:\nie:2 0\n").split()
+	(min_price,max_price)=input("Please enter the price range:min max\nie:200 300\n").split()
 	
     	# Execution of the crawler
-	print ("Thank you for choosing our flight crawler!")
-	print ("Fetching flight details...")
-	scraped_data = process(parse(triptype, origin, destination, startdate, returndate, AdultNo, bookingsite), stopNo, min_price, max_price)
+	print ("Fetching flight details")
+	if triptype=='1':
+		scraped_data = process(parse(triptype, origin, destination, startdate, '00/00/0000', AdultNo), stopNo, min_price, max_price)
+	else:
+ 		scraped_data = process(parse(triptype, origin, destination, startdate, returndate, AdultNo), stopNo, min_price, max_price)       	
 	
 	# Write the selected json data to a file
 	print ("Writing data to output file...")
 	with open('Your-flight-results-%s-%s.json'%(origin, destination),'w') as fp:
-		json.dump(scraped_data,fp)
+		json.dump(scraped_data,fp,indent = 4)
