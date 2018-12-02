@@ -50,7 +50,7 @@ def parse(triptype,origin,destination,startdate,returndate,AdultNo,bookingsite):
 def process(flight_data,stopNo,min_price,max_price):#A function to process the raw data
     lists=[]#Prepare to add info
     try:
-    	  for i in flight_data['legs'].keys():
+    	  for i in range(len(flight_data)):
 		#Select useful info from raw data for every choice
 		#Price info
 		  exact_price = flight_data['legs'][i].get('price',{}).get('exactPrice','')		
