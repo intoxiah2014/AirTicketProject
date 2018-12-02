@@ -160,13 +160,18 @@ if __name__=="__main__":
 	(origin,destination)=input("Please enter your source and destination:\nie:nyc mia\n").split()
 	(AdultNo,stopNo)=input("Please enter number of adults and maximum number of stops you accept:\nie:2 0\n").split()
 	(min_price,max_price)=input("Please enter the price range:min max\nie:200 300\n").split()
+
+	# Allow user to choose the booking site
+	(bookingsite)=input("Please enter your desired booking website: 1 for Expedia, 2 for Orbitz\n")
+	if not (bookingsite=='1' or bookingsite=='2'):
+		raise ValueError('Wrong booking site! Please try again')
 	
     	# Execution of the crawler
 	print ("Fetching flight details")
 	if triptype=='1':
-		scraped_data = process(parse(triptype, origin, destination, startdate, '00/00/0000', AdultNo), stopNo, min_price, max_price)
+		scraped_data = process(parse(triptype, origin, destination, startdate, '00/00/0000', AdultNo, bookingsite), stopNo, min_price, max_price)
 	else:
- 		scraped_data = process(parse(triptype, origin, destination, startdate, returndate, AdultNo), stopNo, min_price, max_price)       	
+ 		scraped_data = process(parse(triptype, origin, destination, startdate, returndate, AdultNo, bookingsite), stopNo, min_price, max_price)       	
 	
 	# Write the selected json data to a file
 	print ("Writing data to output file...")
