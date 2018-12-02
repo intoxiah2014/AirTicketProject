@@ -7,7 +7,7 @@ This is a project for Autogroup1 of IEORE4501 Fall 2018 at Columbia University.
 The project aims to build a web crawler that searches available flight tickets with preferences. 
 Output will be flight tickets that satisfies the input requirements listed from the cheapest to the most expensive one.
 This project will print the available information to your terminal screen.
-Currently, we are able to scrape date from Expedia.com.
+Currently, we are able to gather information from 2 websites, Expedia.com and Orbitz.com
 
 # Main Features
 
@@ -21,6 +21,7 @@ The program requires the user input of:
 * Number of Adults
 * Maximum number of stops acceptable
 * Price Range of the ticket (Minimum and Maximum Price)
+* Website Name
 
 ## output style
 The output will be an oriented dictionary with information of all trips that satisfies the requests. 
