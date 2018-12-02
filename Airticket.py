@@ -126,7 +126,7 @@ def process(flight_data,stopNo,min_price,max_price):
 			
 	#Sort the airtickets according to ticket price
     	  sortedlist = sorted(lists, key=lambda k: k['ticket price'],reverse=False)
-    	  if sortedlist is None:
+    	  if sortedlist == []:
 	  	sortedlist.append("Couldn't find any flights that satisfies your criteria, please try again...")
           return sortedlist
     
