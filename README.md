@@ -27,6 +27,7 @@ The program requires the user input of:
 The output will be an oriented dictionary with information of all trips that satisfies the requests. 
 The output consists:
 * Ticket Price Per Persion
+* Time Range
 * Flight Duration
 * Stops
 * Departing Airport Code
